@@ -1,6 +1,7 @@
 package com.spike.eurekaconsumer.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -9,13 +10,13 @@ import javax.annotation.Resource;
  * @author spike.lin
  */
 @RestController
-public class DcController {
+public class HelloController {
 
     @Resource
-    private DcClient dcClient;
+    private HelloRemote helloRemote;
 
-    @GetMapping("/consumer")
-    public String dc() {
-        return dcClient.consumer();
+    @GetMapping("/hello/{name}")
+    public String index(@PathVariable("name") String name) {
+        return helloRemote.hello(name);
     }
 }
